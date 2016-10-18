@@ -29,5 +29,16 @@ Route::post('/new', [
 		
 ]);
 
+//route to delete a post
+Route::get('/delete/{quote_id}', [
+		
+	'uses' => 'QuoteController@getDeleteQuote',
+	'as' => 'delete' 
+		
+]);
+
+//route for logs
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
 
 

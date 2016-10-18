@@ -11,6 +11,10 @@ use App\Quote;
 //import the Request class
 use Illuminate\Http\Request;
 
+
+//import Log facade/class
+use Illuminate\Support\Facades\Log;
+
 class QuoteController extends Controller{
 	
 	//this will return the index view
@@ -71,6 +75,35 @@ class QuoteController extends Controller{
 		]);
 		
 		
+	}
+	
+	//method to delete a quote
+	//$quote_idis got from the url, cause this is a GET method
+	public function getDeleteQuote($quote_id){
+		
+		log::info('inside getDeleteQuote');
+		
+		//get the quote using the quote id
+		$quote = Quote::find($quote_id);
+		
+		$author_deleted = false;
+		
+		//see if the author of this quote, has written only 1 quote.
+		//if so delete the author when you delete his quote
+		if(count($quote->author->quotes) === 1){
+			
+			//delete the author
+			$quote->author->delete();
+			$author_deleted = true;
+		}
+		
+		//delete the quote
+		$quote->delete();
+		
+		//set the message
+		$msg = $author_deleted ? 'Quote and author deleted' : 'Quote deleted';
+		
+		return redirect()->route('index')->with(['success' => $msg]);
 	}
 	
 }

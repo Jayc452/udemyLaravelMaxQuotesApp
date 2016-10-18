@@ -63,9 +63,15 @@
 			i=2, modulus of 3 is not 0, so we will then check if $i+1's modulus of 3 is 0, which is true, so it must be rightmost element, so we will apply last-in-line class  -->
 			<article class="quote{{ $i % 3 === 0 ? ' first-in-line' : (($i+1) %3 === 0 ? '  last-in-line' : '' )}}">
 				
-				<div class="delete"><a href="#">x</a></div>
+				<!--  this is x sign to delete the quote -->
+				<!--  use the delete route. pass the quote id -->
+				<div class="delete"><a href="{{ route('delete', [ 'quote_id' => $quotes[$i]->id ] ) }}">x</a></div>
 				
+				
+				<!--  show the quote -->
 							{{ $quotes[$i]->quote }}	
+							
+							
 							
 				<div class="info">Created by  <a href="#">{{ $quotes[$i]->author->name }}</a> on {{ $quotes[$i]->created_at }} </div>
 				
