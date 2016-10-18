@@ -16,7 +16,12 @@ class QuoteController extends Controller{
 	//this will return the index view
 	public function getIndex(){
 		
-		return view('index');
+		//get all the quotes
+		$quotes = Quote::all();
+		
+		//the first param is the view that is to be loaded
+		//2nd param is an array of key value of pairs,that contain data to be displayed in the frontend view
+		return view('index', ['quotes' => $quotes]);
 	}
 	
 	
