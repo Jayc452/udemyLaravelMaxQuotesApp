@@ -16,6 +16,37 @@
 
 @section('content')
 
+    <!--  show error & success messages -->
+	<section>
+	<br>
+	
+			<!--  show errors -->
+		@if(count($errors) > 0)
+			<section class="info-box fail">
+			
+			 @foreach($errors->all() as $error)
+			 
+			      <div> {{ $error }} </div>
+			  @endforeach
+	
+			</section>
+		@endif
+			
+		<!--  show success message if it exists -->
+		@if(Session::has('success'))
+		
+			<section class="info-box success">
+			
+				<!--  retrieve the success param from Session. We had stored this in the postQuote method in QuoteController.php -->
+				{{ Session::get('success') }}
+				
+			</section>
+		@endif
+	
+	</section>
+	
+	
+		
 	<!--  display the quotes -->
 	
 	
@@ -50,6 +81,9 @@
 		</div>
 			
 	</section>
+	
+	
+
 	
 	<!--  add a quote -->
 	<section class="edit-quote">
