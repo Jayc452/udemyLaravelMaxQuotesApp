@@ -27,6 +27,14 @@ class QuoteController extends Controller{
 	
 	public function postQuote(Request $request){
 		
+		//validation
+		$this->validate($request, [
+				
+			'author' => 'required|max:60|alpha',
+			'quote' => 'required|max:500'
+				
+		]);
+		
 		//get the values from the form fields
 		
 		//get the author name & capitalise the first character
@@ -57,6 +65,7 @@ class QuoteController extends Controller{
 		//return the index route
 		//"with" carries the content that we want to deliver to that view. We can add anything in there
 		//return redirect() is an alternative to return view...
+		//success param is stored in our session. So you can retrieve it in index view using Session
 		return redirect()->route('index')->with([
 				'success' => 'Quote Saved'	
 		]);
