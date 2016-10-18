@@ -18,10 +18,29 @@ use Illuminate\Support\Facades\Log;
 class QuoteController extends Controller{
 	
 	//this will return the index view
-	public function getIndex(){
+	//we may pass $author to this method. else its default value is null
+	public function getIndex($author = null){
 		
-		//get all the quotes
-		$quotes = Quote::all();
+		//if author is not null
+		if(!is_null($author)){
+			
+			//get the author from db
+			$quote_author = Author::where('name', $author)->first();
+			
+			if($quote_author){
+				
+				//get all the quotes by the author. order by descending order of date	
+				$quotes = $quote_author->quotes()->orderBy('created_at', 'desc')->get(); 
+			}
+			
+		}
+		else{
+			
+			//get all quotes from quotes table using Quote model and ORM
+			$quotes = Quote::orderBy('created_at', 'desc')->get();
+			
+		}
+		
 		
 		//the first param is the view that is to be loaded
 		//2nd param is an array of key value of pairs,that contain data to be displayed in the frontend view

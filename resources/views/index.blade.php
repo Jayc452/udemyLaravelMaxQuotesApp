@@ -16,6 +16,19 @@
 
 @section('content')
 
+	<!--  urlname.com/authorName 
+	in this the authorName is segment 1
+	this checks if authorName is set in url which means that the filter is set -->
+	@if(!empty(Request::segment(1)))
+	
+		<section class="filter-bar">
+		
+			A filter has been set! <a href="{{ route('index')}}"> Show all quotes</a>
+		
+		</section>
+	
+	@endif
+
     <!--  show error & success messages -->
 	<section>
 	<br>
@@ -73,7 +86,7 @@
 							
 							
 							
-				<div class="info">Created by  <a href="#">{{ $quotes[$i]->author->name }}</a> on {{ $quotes[$i]->created_at }} </div>
+				<div class="info">Created by  <a href="{{ route('index', ['author' => $quotes[$i]->author->name ])}}">{{ $quotes[$i]->author->name }}</a> on {{ $quotes[$i]->created_at }} </div>
 				
 			</article>
 		 
