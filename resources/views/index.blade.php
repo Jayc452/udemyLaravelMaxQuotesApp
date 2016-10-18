@@ -3,7 +3,7 @@
 
 <!--  content inside this section is displayed in master.blade.php -->
 @section('title')
-	Hello
+	Quotes App using Laravel
 @endsection
 
 
@@ -17,17 +17,38 @@
 @section('content')
 
 	<!--  display the quotes -->
+	
+	
 	<section class="quotes">
 		<h1> Latest Quotes</h1>
 		
-		<!--  style & design for each of the quotes -->
-		<article class="quote">
-			<div class="delete"><a href="#">x</a></div>
-			Quote Text
-			<div class="info"><a href="#">Created by Jay</a> on... </div>
-		</article>
+		@for($i = 0; $i < count($quotes); $i++)
 		
-		Pagination goes here	
+			<!--  style & design for each of the quotes -->
+			<!--  here we are going to programmatically select the css class to be applied to the quotes. -->
+			<!-- We will have 3 post per row. for leftmost post we will apply first-in-line class & for rightmost post we will apply last-in-line class
+			i = 0 initially, we check modulus of 3, the value is 0, so we will apply first-in-line class
+			i=1, modulus of 3 is not 0, so we will then check if $i+1's modulus of 3 is 0, it is not, so we will apply ''
+			i=2, modulus of 3 is not 0, so we will then check if $i+1's modulus of 3 is 0, which is true, so it must be rightmost element, so we will apply last-in-line class  -->
+			<article class="quote{{ $i % 3 === 0 ? ' first-in-line' : (($i+1) %3 === 0 ? '  last-in-line' : '' )}}">
+				
+				<div class="delete"><a href="#">x</a></div>
+				
+							{{ $quotes[$i]->quote }}	
+							
+				<div class="info">Created by  <a href="#">{{ $quotes[$i]->author->name }}</a> on {{ $quotes[$i]->created_at }} </div>
+				
+			</article>
+		 
+		  
+		@endfor
+	
+		
+		
+		<div class="pagination">
+			Pagination
+		</div>
+			
 	</section>
 	
 	<!--  add a quote -->
@@ -49,5 +70,6 @@
 		
 		</form>
 	</section>
+	
 @endsection
 
