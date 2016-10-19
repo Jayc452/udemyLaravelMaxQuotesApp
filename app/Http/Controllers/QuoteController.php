@@ -30,14 +30,16 @@ class QuoteController extends Controller{
 			if($quote_author){
 				
 				//get all the quotes by the author. order by descending order of date	
-				$quotes = $quote_author->quotes()->orderBy('created_at', 'desc')->get(); 
+				//pagination is enabled. So you will get 6 records per page
+				$quotes = $quote_author->quotes()->orderBy('created_at', 'desc')->paginate(6); 
 			}
 			
 		}
 		else{
 			
-			//get all quotes from quotes table using Quote model and ORM
-			$quotes = Quote::orderBy('created_at', 'desc')->get();
+				//get all quotes from quotes table using Quote model and ORM
+			//pagination is enabled. So you will get 6 records per page
+				$quotes = Quote::orderBy('created_at', 'desc')->paginate(6);
 			
 		}
 		

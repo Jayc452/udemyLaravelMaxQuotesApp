@@ -96,7 +96,22 @@
 		
 		
 		<div class="pagination">
-			Pagination
+			
+			
+			<!-- if the current is not 1, means it is probably 2 or more. hence show left arrow -->
+			<!-- we are using font awesome style to draw the arrow here -->
+			@if($quotes->currentPage() !== 1)
+				<a href="{{ $quotes->previousPageUrl() }}"> <span class="fa fa-caret-left"> </span> </a>
+			@endif
+			
+			
+			<!-- if current page is not the last page & this result has pages
+			then show the right arrow -->
+			@if($quotes->currentPage() !== $quotes->lastPage() && $quotes->hasPages())
+			
+				<a href="{{ $quotes->nextPageUrl()  }}" > <span class="fa fa-caret-right"></span></a>
+			@endif
+	
 		</div>
 			
 	</section>

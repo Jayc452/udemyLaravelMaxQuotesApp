@@ -14,6 +14,9 @@
 		 <!--  if you have issues with css not applying, then replace 'to' with 'secure' in the blade 
 		 placeholder for URL below -->
 		<link rel="stylesheet" href="{{ URL::to('src/css/main.css') }}">
+		
+		<!-- the content for this section will come from view that inherits this master view -->
+		@yield('styles')
 	</head>
 	
 	<body>
