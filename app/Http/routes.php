@@ -15,7 +15,7 @@
 //this route handle requests to root / in the url or where route name index is invoked
 //we will use this route also for filtering quotes by author
 //author field is optional, which is why we have ?
-Route::get('/{author?}', [
+Route::get('/', [
 
 	'uses' => 'QuoteController@getIndex',
 	'as' => 'index'
@@ -37,6 +37,14 @@ Route::get('/delete/{quote_id}', [
 	'uses' => 'QuoteController@getDeleteQuote',
 	'as' => 'delete' 
 		
+]);
+
+
+Route::get('/author/{author?}', [
+
+		'uses' => 'QuoteController@getIndex',
+		'as' => 'author'
+
 ]);
 
 //route for logs

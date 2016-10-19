@@ -86,7 +86,7 @@
 							
 							
 							
-				<div class="info">Created by  <a href="{{ route('index', ['author' => $quotes[$i]->author->name ])}}">{{ $quotes[$i]->author->name }}</a> on {{ $quotes[$i]->created_at }} </div>
+				<div class="info">Created by  <a href="{{ route('author', ['author' => $quotes[$i]->author->name ])}}">{{ $quotes[$i]->author->name }}</a> on {{ $quotes[$i]->created_at }} </div>
 				
 			</article>
 		 
