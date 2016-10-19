@@ -22,6 +22,9 @@ class CreateAuthorsTable extends Migration
             
             //create the name column 
             $table->string('name');
+            
+            //create column for email
+            $table->string('email');
         });
     }
 

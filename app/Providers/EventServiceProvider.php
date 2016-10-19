@@ -12,9 +12,14 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array
      */
+	
+	//listen varaible, listens for events
+	//we will be listening for QuoteCreated event
+	//Listeners for that will be CreateLogEntry
+	//when we execute php artisan event:generate these files will be generated automatically
     protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
+        'App\Events\QuoteCreated' => [
+            'App\Listeners\CreateLogEntry',
         ],
     ];
 
