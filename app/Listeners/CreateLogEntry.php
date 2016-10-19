@@ -35,7 +35,7 @@ class CreateLogEntry
     public function handle(QuoteCreated $event)
     {
         //get the author param from the $event
-        $author = $event->author;
+        $author = $event->author->name;
         
         //store the author in the QuoteLog model
         $log_entry = new QuoteLog();

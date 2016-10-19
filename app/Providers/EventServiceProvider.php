@@ -18,8 +18,15 @@ class EventServiceProvider extends ServiceProvider
 	//Listeners for that will be CreateLogEntry
 	//when we execute php artisan event:generate these files will be generated automatically
     protected $listen = [
+    		
+    		//when QuoteCreated event occurs the listeners in the array will be executed.
         'App\Events\QuoteCreated' => [
+        		
+        	//this will create a log entry in our quotes_log table	
             'App\Listeners\CreateLogEntry',
+        	//this will send an email
+        	'App\Listeners\SendUserNotification',
+        		
         ],
     ];
 

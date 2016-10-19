@@ -21,8 +21,8 @@ class QuoteCreated extends Event
     //author is passed as a parameter
     public function __construct($author)
     {
-        //saved the author name
-        $this->author = $author->name;
+        //saved the author object
+        $this->author = $author;
     }
 
     /**
